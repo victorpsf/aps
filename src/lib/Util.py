@@ -25,3 +25,13 @@ def sleep(sec):
   if type(sec) is not int:
     sec = 1
   time.sleep(sec)
+
+
+def text_concat(*args):
+  text = ''
+
+  for arg in args:
+    if type(arg) in [str, int, float]:
+      text += f' {arg}'
+    else:
+      continue

@@ -21,7 +21,23 @@ class Storage:
   def path_exists(cls, path):
     return os.path.exists(path)
 
-  # def read():
-    
-    
-  # def write():
+  def mkdirs(self, path):
+    os.makedirs(self.path)
+
+  def read(self):
+    if self.path_exists(self.path) is False:
+      self.mkdirs(self.path)
+    lines = []
+    with open(self.join_path(self.path, self.file), 'r') as file:
+      lines = file.readlines()
+    file.close()
+
+    return lines
+
+  def write(self, value):
+    if (self.path_exists(self.path)) is False:
+      self.mkdirs(self.path)
+
+    with open(self.join_path(self.path, self.file), 'a') as file:
+      file.write(value)
+    file.close()
